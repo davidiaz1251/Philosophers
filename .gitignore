@@ -1,3 +1,42 @@
+# ---- COMPILACIÓN EN C ----
+*.o
+*.out
+*.exe
+*.a
+*.so
+*.dSYM/
+*.gcno
+*.gcda
+*.gcov
+
+# ---- BINARIOS ----
+philo
+philosophers
+*.bin
+*.elf
+
+# ---- ARCHIVOS TEMPORALES ----
+*~
+*.swp
+*.tmp
+
+# ---- VS CODE ----
+.vscode/
+
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# ---- GIT ----
+.gitignore
+
+# ---- DOCKER / CODESPACES ----
+.devcontainer/.env
+workspaceStorage/
+
 *.sh
 docker-compose.yml
-.DS_Store
+
