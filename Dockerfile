@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     git \
     zsh \
+    valgrind \  
     && apt-get clean
 
 WORKDIR /project

@@ -40,7 +40,7 @@ typedef struct s_philo
 /* ----------- FUNCIONES ----------- */
 
 /* init */
-int		parse_args(int argc, char **argv, t_config *cfg);
+int		parse_args(char **argv, t_config *cfg);
 int		init_philos(t_philo **philos, t_config *cfg);
 int	    init_forks(t_config *cfg);
 
@@ -54,6 +54,7 @@ void	free_split(char **arr);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *s);
 
 
 /* cleanup */

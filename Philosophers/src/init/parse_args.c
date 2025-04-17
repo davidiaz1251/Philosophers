@@ -15,33 +15,41 @@ static int is_number(const char *str)
     return (1);
 }
 
-static int split_and_count(char **argv, char **out)
+int	split_and_count(char **argv, char **out)
 {
-    int i;
-    int j;
-    char **tmp;
-    int count = 0;
+	int		i;
+	int		j;
+	int		count;
+	char	**tmp;
 
-    i = 1;
-    while (argv[i])
-    {
-        tmp = ft_split(argv[i], ' ');
-        if (!tmp)
-            return (-1);
-        j = 0;
-        while (tmp[j])
-        {
-            out[count++] = tmp[j++];
-            if (count > 5)
-            {
-                free_split(tmp);
-                return (-1);
-            }
-        }
-        free(tmp);
-        i++;
-    }
-    return (count);
+	i = 1;
+	count = 0;
+	while (argv[i])
+	{
+		tmp = ft_split(argv[i], ' ');
+		if (!tmp)
+			return (-1);
+		j = 0;
+		while (tmp[j])
+		{
+			out[count] = ft_strdup(tmp[j]);
+			if (!out[count])
+			{
+				free_split(tmp);
+				return (-1);
+			}
+			count++;
+			j++;
+			if (count > 5)
+			{
+				free_split(tmp);
+				return (-1);
+			}
+		}
+		free_split(tmp);
+		i++;
+	}
+	return (count);
 }
 
 static int fill_config(char **nums, int count, t_config *cfg)
@@ -70,16 +78,19 @@ static int fill_config(char **nums, int count, t_config *cfg)
     return (0);
 }
 
-int parse_args(int argc, char **argv, t_config *cfg)
+int parse_args(char **argv, t_config *cfg)
 {
     char *args[6];
     int count;
+    int		i;
 
-    (void)argc;
     count = split_and_count(argv, args);
     if (count < 4 || count > 5)
         return (1);
     if (fill_config(args, count, cfg))
         return (1);
+    i = 0;
+    while (i < count)
+        free(args[i++]);
     return (0);
 }

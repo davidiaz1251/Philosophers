@@ -2,7 +2,7 @@
 NAME = philo
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 INCLUDES = -Iinclude
 
 SRCS = \
@@ -21,6 +21,7 @@ SRCS = \
 	src/utils/ft_substr.c \
 	src/utils/ft_strlen.c \
 	src/utils/free_all.c \
+	src/utils/ft_strdup.c \
 	src/cleanup/free_all.c 
 
 OBJS = $(SRCS:.c=.o)
