@@ -11,7 +11,6 @@
 
 # ---- BINARIOS ----
 philo
-philosophers
 *.bin
 *.elf
 
@@ -37,6 +36,5 @@ Icon?
 .devcontainer/.env
 workspaceStorage/
 
+# ---- SHELL ----
 *.sh
-docker-compose.yml
-

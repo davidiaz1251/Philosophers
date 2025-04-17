@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  philosophers:
+    build: .
+    container_name: philosophers_dev
+    volumes:
+      - ./Philosophers:/project
+    working_dir: /project
+    stdin_open: true
+    tty: true
+    command: zsh
