@@ -7,6 +7,8 @@
 # include <unistd.h>
 # include <stdio.h> 
 
+# define INT_MAX 2147483647
+
 /* ----------- ESTRUCTURAS ----------- */
 
 typedef struct s_config
