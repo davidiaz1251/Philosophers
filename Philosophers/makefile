@@ -20,6 +20,7 @@ SRCS = \
 	src/utils/ft_split.c \
 	src/utils/ft_substr.c \
 	src/utils/ft_strlen.c \
+	src/utils/free_all.c \
 	src/cleanup/free_all.c 
 
 OBJS = $(SRCS:.c=.o)

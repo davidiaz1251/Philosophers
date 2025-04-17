@@ -1,26 +1,33 @@
 #include "philo.h"
 
-static void	print_config(t_config *cfg)
+static void	print_philos(t_philo *philos, t_config *cfg)
 {
-	printf("Número de filósofos: %d\n", cfg->num_philos);
-	printf("Tiempo para morir: %d\n", cfg->time_to_die);
-	printf("Tiempo para comer: %d\n", cfg->time_to_eat);
-	printf("Tiempo para dormir: %d\n", cfg->time_to_sleep);
-	if (cfg->has_limit)
-		printf("Número de veces que deben comer: %d\n", cfg->must_eat);
-	else
-		printf("Sin límite de comidas.\n");
+	int	i;
+
+	i = 0;
+	while (i < cfg->num_philos)
+	{
+		printf("Filósofo %d\n", philos[i].id);
+		printf("  Left fork : %p\n", (void *)philos[i].left_fork);
+		printf("  Right fork: %p\n", (void *)philos[i].right_fork);
+		printf("  Veces comido: %d\n", philos[i].times_eaten);
+		printf("  Última comida: %ld\n\n", philos[i].last_meal);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_config	cfg;
+	t_philo		*philos;
 
 	if (parse_args(argc, argv, &cfg))
-	{
-		write(2, "Error: argumentos inválidos\n", 28);
-		return (1);
-	}
-	print_config(&cfg);
+		return (write(2, "Error: argumentos inválidos\n", 28), 1);
+	if (init_forks(&cfg))
+		return (write(2, "Error: al crear mutex de forks\n", 31), 1);
+	if (init_philos(&philos, &cfg))
+		return (write(2, "Error: al crear filósofos\n", 27), 1);
+	print_philos(philos, &cfg);
+	free_all(philos, &cfg);
 	return (0);
 }
