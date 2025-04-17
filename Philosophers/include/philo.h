@@ -42,6 +42,7 @@ typedef struct s_philo
 /* init */
 int		parse_args(int argc, char **argv, t_config *cfg);
 int		init_philos(t_philo **philos, t_config *cfg);
+int	    init_forks(t_config *cfg);
 
 /* utils */
 int		ft_atoi(const char *str);
