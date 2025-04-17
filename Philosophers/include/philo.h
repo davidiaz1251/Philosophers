@@ -59,4 +59,9 @@ size_t	ft_strlen(const char *str);
 /* cleanup */
 void	free_all(t_philo *philos, t_config *cfg);
 
+int		start_simulation(t_philo *philos, t_config *cfg);
+void	*philo_routine(void *arg);
+
+void	*monitor_routine(void *arg);
+
 #endif

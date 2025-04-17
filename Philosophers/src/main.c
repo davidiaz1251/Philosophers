@@ -27,6 +27,8 @@ int	main(int argc, char **argv)
 		return (write(2, "Error: al crear mutex de forks\n", 31), 1);
 	if (init_philos(&philos, &cfg))
 		return (write(2, "Error: al crear filósofos\n", 27), 1);
+    if (start_simulation(philos, &cfg))
+		return (write(2, "Error: al iniciar la simulación\n", 32), 1);
 	print_philos(philos, &cfg);
 	free_all(philos, &cfg);
 	return (0);
