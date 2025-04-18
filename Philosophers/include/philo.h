@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:35:08 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 16:35:12 by david            ###   ########.fr       */
+/*   Updated: 2025/04/18 18:21:34 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s);
+int	    validate_and_convert(char **nums, int count, int *values);
 
 
 /* cleanup */

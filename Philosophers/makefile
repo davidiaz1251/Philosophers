@@ -21,6 +21,7 @@ SRCS = \
 	src/utils/ft_substr.c \
 	src/utils/ft_strlen.c \
 	src/utils/ft_strdup.c \
+	src/utils/validate.c \
 	src/cleanup/free_all.c 
 
 OBJS = $(SRCS:.c=.o)
