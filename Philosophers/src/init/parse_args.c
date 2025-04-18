@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:36:35 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 16:36:37 by david            ###   ########.fr       */
+/*   Updated: 2025/04/18 17:55:24 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,26 @@ static int is_number(const char *str)
     }
     return (1);
 }
+static int	process_split_segment(char **tmp, char **out, int *count)
+{
+	int	j;
 
+	j = 0;
+	while (tmp[j])
+	{
+		out[*count] = ft_strdup(tmp[j]);
+		if (!out[*count])
+			return (1);
+		(*count)++;
+		j++;
+		if (*count > 5)
+			return (1);
+	}
+	return (0);
+}
 int	split_and_count(char **argv, char **out)
 {
 	int		i;
-	int		j;
 	int		count;
 	char	**tmp;
 
@@ -41,22 +56,10 @@ int	split_and_count(char **argv, char **out)
 		tmp = ft_split(argv[i], ' ');
 		if (!tmp)
 			return (-1);
-		j = 0;
-		while (tmp[j])
+		if (process_split_segment(tmp, out, &count))
 		{
-			out[count] = ft_strdup(tmp[j]);
-			if (!out[count])
-			{
-				free_split(tmp);
-				return (-1);
-			}
-			count++;
-			j++;
-			if (count > 5)
-			{
-				free_split(tmp);
-				return (-1);
-			}
+			free_split(tmp);
+			return (-1);
 		}
 		free_split(tmp);
 		i++;
