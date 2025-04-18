@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:34:25 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 16:34:29 by david            ###   ########.fr       */
+/*   Updated: 2025/04/18 18:07:59 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	main(int argc, char **argv)
 	t_philo		*philos;
 
 	if (parse_args(argv, &cfg))
-		return (write(2, "Error: argumentos inválidos\n", 28), 1);
+		return (printf("Error: argumentos inválidos\n"), 1);
 	if (init_forks(&cfg))
-		return (write(2, "Error: al crear mutex de forks\n", 31), 1);
+		return (printf("Error: al crear mutex de forks\n"), 1);
 	if (init_philos(&philos, &cfg))
-		return (write(2, "Error: al crear filósofos\n", 27), 1);
+		return (printf("Error: al crear filósofos\n"), 1);
     if (start_simulation(philos, &cfg))
-		return (write(2, "Error: al iniciar la simulación\n", 32), 1);
+		return (printf("Error: al iniciar la simulación\n"), 1);
 	// print_philos(philos, &cfg);
 	free_all(philos, &cfg);
 	return (0);
