@@ -6,32 +6,39 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:36:48 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 16:36:51 by david            ###   ########.fr       */
+/*   Updated: 2025/04/18 21:31:50 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int has_died(t_philo *philo)
+static int	has_died(t_philo *philo)
 {
-    long time_now;
+	long	time_now;
+	int		should_print;
 
-    pthread_mutex_lock(&philo->cfg->death_mutex);
-    time_now = get_timestamp_ms();
-    if (time_now - philo->last_meal > philo->cfg->time_to_die)
-    {
-        if (!philo->cfg->stop_simulation)
-        {
-            philo->cfg->stop_simulation = 1;
-            pthread_mutex_lock(&philo->cfg->print_mutex);
-            printf("%ld %d died\n", time_now - philo->cfg->start_time, philo->id);
-            pthread_mutex_unlock(&philo->cfg->print_mutex);
-        }
-        pthread_mutex_unlock(&philo->cfg->death_mutex);
-        return (1);
-    }
-    pthread_mutex_unlock(&philo->cfg->death_mutex);
-    return (0);
+	pthread_mutex_lock(&philo->cfg->death_mutex);
+	time_now = get_timestamp_ms();
+	if (time_now - philo->last_meal > philo->cfg->time_to_die)
+	{
+		if (!philo->cfg->stop_simulation)
+		{
+			philo->cfg->stop_simulation = 1;
+			should_print = 1;
+		}
+		else
+			should_print = 0;
+		pthread_mutex_unlock(&philo->cfg->death_mutex);
+		if (should_print)
+		{
+			pthread_mutex_lock(&philo->cfg->print_mutex);
+			printf("%ld %d died\n", time_now - philo->cfg->start_time, philo->id);
+			pthread_mutex_unlock(&philo->cfg->print_mutex);
+		}
+		return (1);
+	}
+	pthread_mutex_unlock(&philo->cfg->death_mutex);
+	return (0);
 }
 
 static int all_philos_full(t_philo *philos)
