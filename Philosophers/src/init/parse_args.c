@@ -6,26 +6,12 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:36:35 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 18:20:07 by david            ###   ########.fr       */
+/*   Updated: 2025/04/18 18:26:55 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int is_number(const char *str)
-{
-    int i = 0;
-
-    if (!str || str[0] == '\0')
-        return (0);
-    while (str[i])
-    {
-        if (!ft_isdigit(str[i]))
-            return (0);
-        i++;
-    }
-    return (1);
-}
 static int process_split_segment(char **tmp, char **out, int *count)
 {
     int j;
