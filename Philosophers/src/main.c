@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:34:25 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 22:05:52 by david            ###   ########.fr       */
+/*   Updated: 2025/04/18 22:06:32 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv)
 	t_config	cfg;
 	t_philo		*philos;
 
+    (void)argc;
 	if (parse_args(argv, &cfg))
 		return (printf("Error: argumentos inválidos\n"), 1);
 	if (init_forks(&cfg))
