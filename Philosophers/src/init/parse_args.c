@@ -6,7 +6,7 @@
 /*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:36:35 by david             #+#    #+#             */
-/*   Updated: 2025/04/18 18:26:55 by david            ###   ########.fr       */
+/*   Updated: 2025/04/19 15:34:10 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,40 +53,43 @@ int split_and_count(char **argv, char **out)
     return (count);
 }
 
-static int	fill_config(char **nums, int count, t_config *cfg)
+static int fill_config(char **nums, int count, t_config *cfg)
 {
-	int	values[5];
+    int values[5];
 
-	if (validate_and_convert(nums, count, values))
-		return (1);
-	cfg->num_philos = values[0];
-	cfg->time_to_die = values[1];
-	cfg->time_to_eat = values[2];
-	cfg->time_to_sleep = values[3];
-	cfg->has_limit = 0;
-	cfg->must_eat = -1;
-	if (count == 5)
-	{
-		cfg->has_limit = 1;
-		cfg->must_eat = values[4];
-	}
-	cfg->stop_simulation = 0;
-	return (0);
+    if (validate_and_convert(nums, count, values))
+        return (1);
+    cfg->num_philos = values[0];
+    cfg->time_to_die = values[1];
+    cfg->time_to_eat = values[2];
+    cfg->time_to_sleep = values[3];
+    cfg->has_limit = 0;
+    cfg->must_eat = -1;
+    if (count == 5)
+    {
+        cfg->has_limit = 1;
+        cfg->must_eat = values[4];
+    }
+    cfg->stop_simulation = 0;
+    return (0);
+}
+static void free_args(char **args, int count)
+{
+    int i = 0;
+    while (i < count)
+        free(args[i++]);
 }
 
 int parse_args(char **argv, t_config *cfg)
 {
     char *args[6];
     int count;
-    int i;
 
     count = split_and_count(argv, args);
     if (count < 4 || count > 5)
-        return (1);
+        return (free_args(args, count), 1);
     if (fill_config(args, count, cfg))
-        return (1);
-    i = 0;
-    while (i < count)
-        free(args[i++]);
+        return (free_args(args, count), 1);
+    free_args(args, count);
     return (0);
 }
